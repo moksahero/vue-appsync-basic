@@ -11,7 +11,8 @@ export default {
         }
       }
     }`
-const tasks = await API.graphql(graphqlOperation(listTasks))
+
+    const tasks = await API.graphql(graphqlOperation(listTasks))
     return tasks.data.listTasks.items
   },
   async createTask(taskTitle) {
@@ -28,12 +29,13 @@ const tasks = await API.graphql(graphqlOperation(listTasks))
       }
     }
     `
-const taskDetails = {
+    const taskDetails = {
       id: uuidV4(),
       title: taskTitle,
       completed: false
     }
-const newTask = await API.graphql(graphqlOperation(createTask, taskDetails))
+
+    const newTask = await API.graphql(graphqlOperation(createTask, taskDetails))
     return newTask
   },
   async updateTask(taskDetails) {
@@ -52,7 +54,7 @@ const newTask = await API.graphql(graphqlOperation(createTask, taskDetails))
       }
     }
     `
-const updatedTask = await API.graphql(graphqlOperation(updateTask, taskDetails))
+    const updatedTask = await API.graphql(graphqlOperation(updateTask, taskDetails))
     return updatedTask
   },
   async deleteTask(taskId) {
@@ -67,9 +69,11 @@ const updatedTask = await API.graphql(graphqlOperation(updateTask, taskDetails))
       }
     }
     `
-const taskDetails = {
+
+    const taskDetails = {
       id: taskId
     }
-return API.graphql(graphqlOperation(deleteTask, taskDetails))
+
+    return await API.graphql(graphqlOperation(deleteTask, taskDetails))
   }
 }
